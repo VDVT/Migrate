@@ -1,0 +1,40 @@
+{
+    "name": "vdvt/migrate",
+    "description": "vdvt migrate",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Trinh Le",
+            "email": "lehuutrinh32@gmail.com"
+        }
+    ],
+    "homepage": "https://github.com/vdvt/migrate",
+    "keywords": ["Laravel", "Migrate"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "psr-4": {
+            "VDVT\\Migrate\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "VDVT\\Migrate\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VDVT\\Migrate\\MigrateServiceProvider"
+            ],
+            "aliases": {
+                "Migrate": "VDVT\\Migrate\\Facades\\Migrate"
+            }
+        }
+    }
+}
