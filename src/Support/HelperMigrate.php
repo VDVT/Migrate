@@ -125,6 +125,7 @@ trait HelperMigrate
     public function resetTrackingColumn()
     {
         HelperSchema::downAddColumn($this->tableMigration, $this->columnTracking);
+        HelperSchema::downAddColumn($this->tableMigration, 'updated_at');
     }
 
     /**
@@ -140,7 +141,11 @@ trait HelperMigrate
             });
 
             HelperSchema::upAddColumn($this->tableMigration, 'updated_at', function (Blueprint $table) {
-                $table->timestamp('updated_at');
+                $table->timestamp('updated_at')->nullable();
+            });
+
+            HelperSchema::upAddColumn($this->tableMigration, $this->primaryKey, function (Blueprint $table) {
+                DB::statement("ALTER TABLE {$this->tableMigration} ADD COLUMN {$this->primaryKey} SERIAL PRIMARY KEY");
             });
         }
     }
