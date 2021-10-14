@@ -138,6 +138,10 @@ trait HelperMigrate
             }, function () {
                 DB::statement("CREATE INDEX ON {$this->tableMigration} ({$this->columnTracking});");
             });
+
+            HelperSchema::upAddColumn($this->tableMigration, 'updated_at', function (Blueprint $table) {
+                $table->timestamp('updated_at');
+            });
         }
     }
 
