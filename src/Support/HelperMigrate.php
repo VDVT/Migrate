@@ -151,11 +151,10 @@ trait HelperMigrate
     }
 
     /**
-     * loadDataMigration
-     *
-     * @return array
+     * @param null $filter
+     * @return Collection
      */
-    public function loadDataMigration(array $conditions = []): Collection
+    public function loadDataMigration($filter = null): Collection
     {
         if ($this->entityMigration) {
             $queryData = new $this->entityMigration;
@@ -170,7 +169,7 @@ trait HelperMigrate
                     ->whereNull($this->columnTracking)
                     ->orWhere($this->columnTracking, false);
             })
-            ->where($conditions);
+            ->where($filter ?: []);
 
         if ($this->sortEnable) {
             $queryData->orderBy($this->primaryKey, $this->sortEnable);
