@@ -47,11 +47,11 @@ abstract class AbstractMigrator extends Command
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    protected function getCustomCondition(): array
+    protected function getCustomCondition()
     {
-        return [];
+        return null;
     }
 
     /**
